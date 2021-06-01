@@ -78,9 +78,9 @@ https://urrio.fi
     <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-        $("input").keyup(function () {
+        $("input").on("keyup change",(function () {
         Laske();
-        });
+        }));
 
         function Laske(){
             // init values
@@ -90,28 +90,51 @@ https://urrio.fi
             nopeus1 = Number(nopeus1);
             let nopeus2 = $("#nopeus2").val();
             nopeus2 = Number(nopeus2);
-            // TODO nopeus ei pääse yli 100? ei päivitä mutta nopeus päivittää
+            // TODO nopeus ei päivitä yli matkan pituuden?
 
             // calculate elapsed time
             matka_aika1 = matka / nopeus1;
             matka_aika2 = matka / nopeus2;
             let ajat1 = KulunutAika(matka_aika1); 
             let ajat2 = KulunutAika(matka_aika2);
+            let yksiH = ajat1[0];
+            let yksiMin = ajat1[1];
+            let kaksiH = ajat2[0];
+            let kaksiMin = ajat2[1];
+            yksiMin = yksiMin.toFixed(0);
+            kaksiMin = kaksiMin.toFixed(0);
 
             // display time 
-            if(Number(ajat1[0])){ $("#aika1").html(nopeus1 + "km/h " + ajat1[0] + "h " + ajat1[1] + "min");}
-            if(Number(ajat2[0])){ $("#aika2").html(nopeus2 + "km/h " + ajat2[0] + "h " + ajat2[1] + "min");}        
+            //if(Number(ajat1[0])){ $("#aika1").html(nopeus1 + "km/h " + ajat1[0] + "h " + ajat1[1] + "min");}
+            //if(Number(ajat2[0])){ $("#aika2").html(nopeus2 + "km/h " + ajat2[0] + "h " + ajat2[1] + "min");}
+            $("#aika1").html(nopeus1 + "km/h " + yksiH + "h " + yksiMin + "min");
+            $("#aika2").html(nopeus2 + "km/h " + kaksiH + "h " + kaksiMin + "min");
 
-            if(matka_aika1 < matka_aika2){
-                difh = ajat1[0] - ajat2[0];
-                difmin = ajat1[1] - ajat2[1];
-                console.log(difh+ "h j abs a min" + difmin);
+           
+                /* Mahdolliset tapaukset = 
+                1. aika     2. aika     odote       ratkaisu
+                1h 10min  > 1h 5min     5min        normaali 
+                1h 10min  < 1h 15min    5min        normaali 
+                0h 10min  <  1h 20min   1h 10min    normaali
+                0h 10min  <  1h 5min    55min       siirrä 1h minuutteihin  tapaus Ah < BH && Amin > Bmin && 
+                
+                
+                Ei näytä silti oikein aikoja TODO KOSKA LAUSEET FAILAA
+                */
+            if(yksiH < kaksiH && yksiMin > kaksiMin){
+                difmin = 60 - yksiMin + kaksiMin;
+                difh = kaksiH - 1;
+            }
+            else if(yksiH > kaksiH && yksiMin < kaksiMin){
+                difmin = 60 - yksiMin + kaksiMin;
+                difh = yksiH - 1;
             }
             else{
-                difh = ajat2[0] - ajat1[0];
-                difmin = ajat2[1] - ajat1[1];
-                console.log(difh+ "h ELSE  min" + difmin);
+                difh = yksiH - kaksiH;
+                difmin = yksiMin - kaksiMin;
+
             }
+            
             difh = Math.abs(difh);
             difmin = Math.abs(difmin);
             if(Number(difmin)){ $("#infoAika").html("Matka nopeutui " + difh +  " h " + difmin + " minuuttia");}
@@ -143,18 +166,13 @@ https://urrio.fi
         }
         
         function KulunutAika(matka_aika){
-            if(matka_aika != 0){
-                let tunnit = parseInt(matka_aika);
-                let minuutit = (matka_aika - tunnit) * 60;
-                minuutit = parseInt(minuutit);
-                return [tunnit, minuutit];
-            }
-            else{
-                let tunnit = parseInt(matka_aika);
-                let minuutit = (matka_aika - tunnit) * 60;
-                minuutit = parseInt(minuutit);
-                return [tunnit, minuutit];
-            }
+            let tunnit = matka_aika.toFixed(0);
+            let minuutit = (matka_aika - tunnit) * 60;
+            minuutit = minuutit.toFixed(0);
+            minuutit = Math.abs(minuutit);
+            tunnit = Math.abs(tunnit);
+            return [tunnit, minuutit];
+            
         }
 
         function Kulutus(nopeus1, nopeus2, auto){
