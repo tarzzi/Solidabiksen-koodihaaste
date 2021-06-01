@@ -1,0 +1,93 @@
+<!--
+Solidabiksen koodihaaste 2021
+
+Tehtävänäsi on toteuttaa autoilumittari-sovellus. 
+Sovelluksen tulee pystyä suorittamaan vertailu matka-ajan ja polttoaineen
+kulutuksen välillä kahden eri valitun nopeuden mukaan: käyttäjä ilmoittaa 
+saman matkustettavan etäisyyden samalla kulkuneuvotyypillä eri nopeuksilla 
+ja sovellus laskee miten paljon nopeammin käyttäjä on perillä ja kuinka paljon 
+enemmän polttoainetta tähän kuluu.
+
+Toteuttanut:
+Tarmo Urrio
+https://urrio.fi
+-->
+
+<html lang="fi">
+<head>
+
+</head>
+<body style="width: 80%; margin: 5rem auto;">
+    <h1>Solabiksen koodihaaste</h1>
+    <div>
+        <form>            
+            <label>Matka
+                <input type="text" id="matka"> Km
+            </label><br><br>
+            <label>Nopeus 1
+                <input type="text" id="nopeus1"> Km/h
+            </label><br><br>
+            <label>Nopeus 2
+                <input type="text" id="nopeus2"> Km/h
+            </label>
+        </form>
+    </div>
+    <div>
+        <h2>Matka-aika</h2>
+        <div style="display: grid; grid-template-columns: auto auto auto;">
+            <div>Nopeudella 1: <span id="aika1" style="font-weight: bold;"></span></div>
+            <div>Nopeudella 2: <span id="aika2" style="font-weight: bold;"></span></div>
+        </div>
+    </div>
+    <div>
+        <h2>Polttoaineen kulutus</h2>
+        <div style="display: grid; grid-template-columns: auto auto auto;">
+            <div>Auto A: <span id="kulutusA"></span></div>
+            <div>Auto B: <span id="kulutusB"></span></div>
+            <div>Auto C: <span id="kulutusC"></span></div>
+        </div>
+    </div>
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("input").keyup(function () {
+        Laske();
+        });
+
+        function Laske(){
+            // init values
+            let autoA = 3;
+            let autoB = 3.5;
+            let autoC = 4;
+            let kulmakerroin = 1.009
+            let matka = $("#matka").val();
+            matka = Number(matka);
+            let nopeus1 = $("#nopeus1").val();
+            nopeus1 = Number(nopeus1);
+            let nopeus2 = $("#nopeus2").val();
+            nopeus2 = Number(nopeus2);
+            // calculate elapsed time
+            matka_aika1 = matka / nopeus1;
+            matka_aika2 = matka / nopeus2;
+            let ajat1 = KulunutAika(matka_aika1);
+            let ajat2 = KulunutAika(matka_aika2);
+            $("#aika1").html(ajat1[0] + " h " + ajat1[1] + "min");
+            $("#aika2").html(ajat2[0] + " h " + ajat2[1] + "min");
+
+            // calculate consumption
+        }
+
+        function KulunutAika(matka_aika){
+            let tunnit = parseInt(matka_aika);
+            let minuutit = (matka_aika - tunnit) * 60;
+            minuutit = parseInt(minuutit);
+            return [tunnit, minuutit];
+        }
+
+        function Kulutus(kulutus){
+
+        }
+        });
+    </script>
+</body>
+</html>
