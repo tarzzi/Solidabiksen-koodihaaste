@@ -15,48 +15,63 @@ https://urrio.fi
 
 <html lang="fi">
 <head>
-
+<style>
+    input {
+        width: 5rem;
+    }
+    .infobox{
+        border: outset;
+        padding: 2rem;
+    }
+</style>
 </head>
 <body style="width: 80%; margin: 5rem auto;">
-    <h1>Solabiksen koodihaaste</h1>
-    <div>
-        <form>            
+    <h1>Solidabiksen koodihaaste</h1>
+    <div style="display: grid; grid-template-columns: auto auto auto;">
+        <div>    
             <label>Matka
-                <input type="text" id="matka"> Km
-            </label><br><br>
+                <input type="number" id="matka"> Km
+            </label>
+        </div>
+        <div>  
             <label>Nopeus 1
                 <input type="text" id="nopeus1"> Km/h
-            </label><br><br>
+            </label>
+        </div>
+        <div>  
             <label>Nopeus 2
                 <input type="text" id="nopeus2"> Km/h
             </label>
-        </form>
+        </div>
     </div>
     <div>
         <h2>Matka-aika</h2>
         <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>Nopeudella 1: <span id="aika1" style="font-weight: bold;"></span></div>
-            <div>Nopeudella 2: <span id="aika2" style="font-weight: bold;"></span></div>
+            <div class="infobox"><span id="aika1" style="font-weight: bold;"></span></div>
+            <div class="infobox"><span id="aika2" style="font-weight: bold;"></span></div>
+            <div class="infobox"><span id="infoAika" style="font-weight: bold;"></span><br><br></div>
         </div>
     </div>
     <div>
         <h2>Polttoaineen kulutus</h2>
         <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-                Auto A <br><br>
-                Nopeudella 1: <span id="kulutusA1"></span><br><br>
-                Nopeudella 2: <span id="kulutusA2"></span><br><br>
-                <span id="infoA"></span><br><br>
+            <div class="infobox">
+                Auto A - 3L/100km<br><br>
+                <span id="kulutusA1"></span><br><br>
+                <span id="kulutusA2"></span><br><br>
+                <span id="infoAk" style="font-weight: bold;"></span>
             </div>
-            <div>
-                Auto B <br><br>
-                Nopeudella 1: <span id="kulutusB1"></span><br><br>
-                Nopeudella 2: <span id="kulutusB2"></span><br><br>
+            <div class="infobox">
+                Auto B - 3.5L/100km <br><br>
+                <span id="kulutusB1"></span><br><br>
+                <span id="kulutusB2"></span><br><br>
+                <span id="infoBk" style="font-weight: bold;"></span>
             </div>
-            <div>
-                Auto C <br><br>
-                Nopeudella 1: <span id="kulutusC1"></span><br><br>
-                Nopeudella 2: <span id="kulutusC2"></span><br><br>
+            <div class="infobox">
+                Auto C - 4L/100km <br><br>
+                <span id="kulutusC1"></span><br><br>
+                <span id="kulutusC2"></span><br><br>
+                <span id="infoCk" style="font-weight: bold;"></span>
             </div>
         </div>
     </div>
@@ -69,54 +84,111 @@ https://urrio.fi
 
         function Laske(){
             // init values
-            const autoA = 3;
-            const autoB = 3.5;
-            const autoC = 4;
-            const kulmakerroin = 1.009
             let matka = $("#matka").val();
             matka = Number(matka);
             let nopeus1 = $("#nopeus1").val();
             nopeus1 = Number(nopeus1);
             let nopeus2 = $("#nopeus2").val();
             nopeus2 = Number(nopeus2);
+            // TODO nopeus ei pääse yli 100? ei päivitä mutta nopeus päivittää
+
             // calculate elapsed time
             matka_aika1 = matka / nopeus1;
             matka_aika2 = matka / nopeus2;
-            let ajat1 = KulunutAika(matka_aika1);
+            let ajat1 = KulunutAika(matka_aika1); 
             let ajat2 = KulunutAika(matka_aika2);
 
             // display time 
-            if(Number(ajat1[0])){ $("#aika1").html(ajat1[0] + " h " + ajat1[1] + "min");}
-            if(Number(ajat2[0])){ $("#aika2").html(ajat2[0] + " h " + ajat2[1] + "min");}
+            if(Number(ajat1[0])){ $("#aika1").html(nopeus1 + "km/h " + ajat1[0] + "h " + ajat1[1] + "min");}
+            if(Number(ajat2[0])){ $("#aika2").html(nopeus2 + "km/h " + ajat2[0] + "h " + ajat2[1] + "min");}        
+
+            if(matka_aika1 < matka_aika2){
+                difh = ajat1[0] - ajat2[0];
+                difmin = ajat1[1] - ajat2[1];
+                console.log(difh+ "h j abs a min" + difmin);
+            }
+            else{
+                difh = ajat2[0] - ajat1[0];
+                difmin = ajat2[1] - ajat1[1];
+                console.log(difh+ "h ELSE  min" + difmin);
+            }
+            difh = Math.abs(difh);
+            difmin = Math.abs(difmin);
+            if(Number(difmin)){ $("#infoAika").html("Matka nopeutui " + difh +  " h " + difmin + " minuuttia");}
+            else if(difmin == 0 && difh == 0){$("#infoAika").html("Nopeudet ovat samat");}
 
             // calculate consumption
-            let kulutusA1 = autoA * (kulmakerroin ** nopeus1);
-            kulutusA1 = kulutusA1.toFixed(2);
-            let kulutusA2 = autoA * (kulmakerroin ** nopeus2); 
-            kulutusA2 = kulutusA2.toFixed(2);
-            if(Number(kulutusA1)){ $("#kulutusA1").html(kulutusA1 + " L/100kmh");}
-            if(Number(kulutusA2)){ $("#kulutusA2").html(kulutusA2 + " L/100kmh");}
+            let kulutusA = Kulutus(nopeus1, nopeus2, "a");
+            let kulutusB = Kulutus(nopeus1, nopeus2, "b");
+            let kulutusC = Kulutus(nopeus1, nopeus2, "c");
+
+            //display consumption
+            if(Number(kulutusA[0])){ $("#kulutusA1").html(nopeus1 +"km/h "+ kulutusA[0] + " L/100kmh");}
+            if(Number(kulutusA[0])){ $("#kulutusA2").html(nopeus2 +"km/h "+ kulutusA[1] + " L/100kmh");}
+            if(Number(kulutusB[0])){ $("#kulutusB1").html(nopeus1 +"km/h "+ kulutusB[0] + " L/100kmh");}
+            if(Number(kulutusB[0])){ $("#kulutusB2").html(nopeus2 +"km/h "+ kulutusB[1] + " L/100kmh");}
+            if(Number(kulutusC[0])){ $("#kulutusC1").html(nopeus1 +"km/h "+ kulutusC[0] + " L/100kmh");}
+            if(Number(kulutusC[0])){ $("#kulutusC2").html(nopeus2 +"km/h "+ kulutusC[1] + " L/100kmh");}
 
             // elaborate results
-            let litraero = kulutusA1 - kulutusA2;
-            litraero = litraero.toFixed(2);
-            litraero = litraero * matka / 100;
-            if(Number(litraero)){ $("#infoA").html("Autosi kulutti bensaa " + litraero + " litraa enemmän");}
+            let litraeroA = Kulutusero(kulutusA[0], kulutusA[1], matka);
+            let litraeroB = Kulutusero(kulutusB[0], kulutusB[1], matka);
+            let litraeroC = Kulutusero(kulutusC[0], kulutusC[1], matka);
+            
+            if(Number(litraeroA)){ $("#infoAk").html("Auto kulutti bensaa " + litraeroA + " litraa enemmän");}
+            if(Number(litraeroB)){ $("#infoBk").html("Auto kulutti bensaa " + litraeroB + " litraa enemmän");}
+            if(Number(litraeroC)){ $("#infoCk").html("Auto kulutti bensaa " + litraeroC + " litraa enemmän");}
 
 
         }
         
         function KulunutAika(matka_aika){
-            let tunnit = parseInt(matka_aika);
-            let minuutit = (matka_aika - tunnit) * 60;
-            minuutit = parseInt(minuutit);
-            return [tunnit, minuutit];
+            if(matka_aika != 0){
+                let tunnit = parseInt(matka_aika);
+                let minuutit = (matka_aika - tunnit) * 60;
+                minuutit = parseInt(minuutit);
+                return [tunnit, minuutit];
+            }
+            else{
+                let tunnit = parseInt(matka_aika);
+                let minuutit = (matka_aika - tunnit) * 60;
+                minuutit = parseInt(minuutit);
+                return [tunnit, minuutit];
+            }
         }
 
-        function Kulutus(kulutus){
-
+        function Kulutus(nopeus1, nopeus2, auto){
+            const autoA = 3;
+            const autoB = 3.5;
+            const autoC = 4;
+            const kulmakerroin = 1.009
+            let kulutus;
+            switch(auto){
+                case "a":
+                    kulutus = autoA;
+                    break;
+                case "b":
+                    kulutus = autoB;
+                    break;
+                case "c":
+                    kulutus = autoC;
+                    break;                
+            }
+            let kulutus1 = kulutus * (kulmakerroin ** nopeus1);
+            kulutus1 = kulutus1.toFixed(2);
+            let kulutus2 = kulutus * (kulmakerroin ** nopeus2); 
+            kulutus2 = kulutus2.toFixed(2);
+            return [kulutus1, kulutus2]
         }
-        });
+
+        function Kulutusero(kulutus1, kulutus2, matka){
+            let litraero = kulutus1 - kulutus2;  
+            litraero = litraero * matka / 100;
+            litraero = Math.abs(litraero);
+            litraero = Number(litraero.toFixed(2));       
+            return litraero;            
+        }
+    });
     </script>
 </body>
 </html>
