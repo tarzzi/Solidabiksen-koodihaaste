@@ -17,6 +17,10 @@ https://urrio.fi
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Open+Sans&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
         body{            
             font-family: 'Open Sans', sans-serif;
@@ -98,10 +102,13 @@ https://urrio.fi
             padding: 2rem;
             text-align: center;
         }
+        .hidden{
+            display: none;
+        }
 </style>
 </head>
 <body style="margin: 0">
-    <div id="header"><h1>Autoilumittari </h1></div>
+    <div id="header"><h1 class="animate__animated animate__lightSpeedInLeft">Autoilumittari </h1></div>
     <div id="container">
         <div class="grid-container">
             <div class="typebox">
@@ -122,7 +129,7 @@ https://urrio.fi
         </div>
         <div>
             <h2>Matka-aika</h2>
-            <div class="info-grid">
+            <div class="info-grid hidden" id="time">
                 <div class="infobox"><h3 class="blue-bg">Nopeudella 1<span id="aika1" style="font-weight: bold;"></span></h3></div>
                 <div class="infobox">
                     <h3>Aikaero</h3>
@@ -136,7 +143,7 @@ https://urrio.fi
         </div>
         <div>
             <h2>Polttoaineen kulutus</h2>
-            <div class="info-grid">
+            <div class="info-grid hidden" id="fuel">
                 <div class="infobox">
                     <h3>Auto A - 3L/100km</h3>
                     <div style="display: grid; grid-template-columns: auto auto;">
@@ -164,7 +171,13 @@ https://urrio.fi
     <script type="text/javascript">
         $(document).ready(function () {
         $("input").on("keyup change",(function () {
-        Laske();
+            //animations
+            if($("#time").hasClass("hidden") ){
+                $("#time").removeClass("hidden"); 
+                $("#fuel").removeClass("hidden");}
+            $(".fade-in").addClass("animate__animated, animate__fadeIn");
+            //calculations
+            Laske();
         }));
 
         function Laske(){
