@@ -20,7 +20,22 @@ https://urrio.fi
     <style>
         body{            
             font-family: 'Open Sans', sans-serif;
-        }
+        }    
+        h2{
+            background-color: rgb(0,151,117);
+            color: white;
+            padding: 1rem;
+            border: 0.3rem solid white;
+            border-radius:1rem;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.329);            
+        } 
+        h3{
+            background-color: rgb(0,99,166);
+            color: white;
+            border: 1px solid white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.329);  
+            padding: 0.3rem 0;
+        }        
         input {
             width: 6rem;
             height: 2rem;
@@ -28,20 +43,10 @@ https://urrio.fi
             margin: 0 auto;
             font-size: 1.5rem;
         }
-        .typebox{
-            background-color: rgb(0,99,166);
-            color: white;
-            border: 1px solid white;
-            border-radius: 100%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            height: 20vh;
-            width: 20vh;
-            margin: auto;            
-        }
-        .infobox{
-            border: outset;
-            padding: 2rem;
-            text-align: center;
+        #breaking{
+            background-color: rgb(255,204,1);
+            color: black;
+            border: 3px solid rgb(228, 1, 44);
         }
         #header{
             font-family: 'Oleo Script Swash Caps', cursive;
@@ -57,13 +62,49 @@ https://urrio.fi
             margin: 0 auto;
             padding: 2rem 0;
         }
+        .blue-bg{            
+            background-color: rgb(0,99,166);
+            color: white;
+            border: 1px solid white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.329);  
+        }
+        .grid-container{
+            display: grid; 
+            grid-template-columns: auto auto auto; 
+            text-align: center; 
+            font-size: 1.6rem; 
+        }
+        .typebox{
+            background-color: rgb(0,99,166);
+            color: white;
+            border: 1px solid white;
+            border-radius: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.329);   
+            height: 10rem;
+            width: 10rem;
+            margin: auto;
+            text-align: center;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+        }
+        .info-grid{
+            display: grid;
+            grid-template-columns: auto auto auto; 
+            column-gap: 1rem;
+        }
+        .infobox{
+            border: outset;
+            padding: 2rem;
+            text-align: center;
+        }
 </style>
 </head>
 <body style="margin: 0">
-    <div id="header"><h1>Solidabiksen koodihaaste</h1></div>
+    <div id="header"><h1>Autoilumittari </h1></div>
     <div id="container">
-        <div style="display: grid; grid-template-columns: auto auto auto; text-align: center; font-size: 1.8rem;">
-            <div class="typebox">    
+        <div class="grid-container">
+            <div class="typebox">
                 <label>Matka
                     <input type="number" id="matka"> Km
                 </label>
@@ -81,29 +122,37 @@ https://urrio.fi
         </div>
         <div>
             <h2>Matka-aika</h2>
-            <div style="display: grid; grid-template-columns: auto auto auto; column-gap: 1rem;">
-                <div class="infobox">Nopeudella 1 <br><span id="aika1" style="font-weight: bold;"></span></div>
-                <div class="infobox"><span id="infoAika" style="font-weight: bold;"></span><br><br></div>
-                <div class="infobox">Nopeudella 2<br><br> <span id="aika2" style="font-weight: bold;"></span></div>
+            <div class="info-grid">
+                <div class="infobox"><h3 class="blue-bg">Nopeudella 1<span id="aika1" style="font-weight: bold;"></span></h3></div>
+                <div class="infobox">
+                    <h3>Aikaero</h3>
+                    <span id="infoAika" style="font-weight: bold;"></span>
+                    <h3 id="breaking">Jarrutusmatka kasvoi
+                        <span id="infoJarru" style="font-weight: bold;"></span>
+                    </h3>
+                </div>
+                <div class="infobox"><h3>Nopeudella 2</h3> <span id="aika2" style="font-weight: bold;"></span></div>
             </div>
         </div>
         <div>
             <h2>Polttoaineen kulutus</h2>
-            <div style="display: grid; grid-template-columns: auto auto auto; column-gap: 1rem;">
+            <div class="info-grid">
                 <div class="infobox">
-                    Auto A - 3L/100km<br><br>
-                    <span id="kulutusA1"></span><br><br>
-                    <span id="kulutusA2"></span><br><br>
+                    <h3>Auto A - 3L/100km</h3>
+                    <div style="display: grid; grid-template-columns: auto auto;">
+                        <span id="kulutusA1"></span>
+                        <span id="kulutusA2"></span>
+                    </div>
                     <span id="infoAk" style="font-weight: bold;"></span>
                 </div>
                 <div class="infobox">
-                    Auto B - 3.5L/100km <br><br>
+                    <h3>Auto B - 3.5L/100km</h3>
                     <span id="kulutusB1"></span><br><br>
                     <span id="kulutusB2"></span><br><br>
                     <span id="infoBk" style="font-weight: bold;"></span>
                 </div>
                 <div class="infobox">
-                    Auto C - 4L/100km <br><br>
+                    <h3>Auto C - 4L/100km</h3>
                     <span id="kulutusC1"></span><br><br>
                     <span id="kulutusC2"></span><br><br>
                     <span id="infoCk" style="font-weight: bold;"></span>
@@ -141,7 +190,7 @@ https://urrio.fi
 
             // display time 
             if(Number(nopeus1)){ $("#aika1").text(nopeus1 + "km/h " + yksiH + "h " + yksiMin + "min");}
-            else if(nopeus2 == 0){ $("#aika2").text(nopeus2 + "km/h pysyt paikallasi");}
+            else if(nopeus1 == 0){ $("#aika1").text(nopeus1 + "km/h pysyt paikallasi");}
             if(Number(nopeus2)){ $("#aika2").text(nopeus2 + "km/h " + kaksiH + "h " + kaksiMin + "min");}
             else if(nopeus2 == 0){ $("#aika2").text(nopeus2 + "km/h pysyt paikallasi");}
 
@@ -160,7 +209,7 @@ https://urrio.fi
             }
             difh = Math.abs(difh);
             difmin = Math.abs(difmin);
-            if(Number(difmin)){ $("#infoAika").html("Matka nopeutui " + difh +  " h " + difmin + " minuuttia");}
+            if(Number(difmin)){ $("#infoAika").html(difh +  " h " + difmin + " minuuttia");}
             else if(difmin == 0 && difh == 0){$("#infoAika").html("Nopeudet ovat samat");}
 
             // calculate consumption
@@ -169,25 +218,42 @@ https://urrio.fi
             let kulutusC = Kulutus(nopeus1, nopeus2, "c");
 
             //display consumption
-            if(Number(kulutusA[0])){ $("#kulutusA1").html(nopeus1 +"km/h "+ kulutusA[0] + " L/100kmh");}
-            if(Number(kulutusA[0])){ $("#kulutusA2").html(nopeus2 +"km/h "+ kulutusA[1] + " L/100kmh");}
-            if(Number(kulutusB[0])){ $("#kulutusB1").html(nopeus1 +"km/h "+ kulutusB[0] + " L/100kmh");}
-            if(Number(kulutusB[0])){ $("#kulutusB2").html(nopeus2 +"km/h "+ kulutusB[1] + " L/100kmh");}
-            if(Number(kulutusC[0])){ $("#kulutusC1").html(nopeus1 +"km/h "+ kulutusC[0] + " L/100kmh");}
-            if(Number(kulutusC[0])){ $("#kulutusC2").html(nopeus2 +"km/h "+ kulutusC[1] + " L/100kmh");}
+            if(Number(kulutusA[0])){ $("#kulutusA1").html(nopeus1 +"km/h "+ kulutusA[0] + " L/100km");}
+            if(Number(kulutusA[0])){ $("#kulutusA2").html(nopeus2 +"km/h "+ kulutusA[1] + " L/100kh");}
+            if(Number(kulutusB[0])){ $("#kulutusB1").html(nopeus1 +"km/h "+ kulutusB[0] + " L/100kh");}
+            if(Number(kulutusB[0])){ $("#kulutusB2").html(nopeus2 +"km/h "+ kulutusB[1] + " L/100km");}
+            if(Number(kulutusC[0])){ $("#kulutusC1").html(nopeus1 +"km/h "+ kulutusC[0] + " L/100km");}
+            if(Number(kulutusC[0])){ $("#kulutusC2").html(nopeus2 +"km/h "+ kulutusC[1] + " L/100km");}
 
             // elaborate results
             let litraeroA = Kulutusero(kulutusA[0], kulutusA[1], matka);
             let litraeroB = Kulutusero(kulutusB[0], kulutusB[1], matka);
             let litraeroC = Kulutusero(kulutusC[0], kulutusC[1], matka);
             
-            if(Number(litraeroA)){ $("#infoAk").html("Auto kulutti bensaa " + litraeroA + " litraa enemmän");}
-            if(Number(litraeroB)){ $("#infoBk").html("Auto kulutti bensaa " + litraeroB + " litraa enemmän");}
-            if(Number(litraeroC)){ $("#infoCk").html("Auto kulutti bensaa " + litraeroC + " litraa enemmän");}
+            if(Number(litraeroA)){ $("#infoAk").html("Polttoainetta kului " + litraeroA + " litraa enemmän");}
+            if(Number(litraeroB)){ $("#infoBk").html("Polttoainetta kului " + litraeroB + " litraa enemmän");}
+            if(Number(litraeroC)){ $("#infoCk").html("Polttoainetta kului " + litraeroC + " litraa enemmän");}
 
-
+            /*
+            Jarrtusmatkan laskenta
+            (Nopeus / 10 * nopeus / 10)/ 2
+            Reaktioajan laskenta
+            (Nopeus / 10) * 3
+            */
+            let jarrutus1 = Jarrutusmatka(nopeus1);
+            let jarrutus2 = Jarrutusmatka(nopeus2);
+            let jarrutusero = Math.abs(jarrutus1 - jarrutus2);
+            jarrutusero = jarrutusero.toFixed(0);
+            if(Number(jarrutusero)){$("#infoJarru").text(jarrutusero + " metriä");}
         }
-        
+
+        function Jarrutusmatka(nopeus){
+            let jarrutus = (nopeus / 10) * (nopeus / 10) / 2;
+            let reaktio = nopeus / 10 * 3;
+            jarrutus += reaktio;
+            return jarrutus;
+        }
+
         function KulunutAika(matka_aika){
             let tunnit = matka_aika.toFixed(0);
             let minuutit = (matka_aika - tunnit) * 60;
