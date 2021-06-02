@@ -15,63 +15,99 @@ https://urrio.fi
 
 <html lang="fi">
 <head>
-<style>
-    input {
-        width: 5rem;
-    }
-    .infobox{
-        border: outset;
-        padding: 2rem;
-    }
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        body{            
+            font-family: 'Open Sans', sans-serif;
+        }
+        input {
+            width: 6rem;
+            height: 2rem;
+            display: block;
+            margin: 0 auto;
+            font-size: 1.5rem;
+        }
+        .typebox{
+            background-color: rgb(0,99,166);
+            color: white;
+            border: 1px solid white;
+            border-radius: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            height: 20vh;
+            width: 20vh;
+            margin: auto;            
+        }
+        .infobox{
+            border: outset;
+            padding: 2rem;
+            text-align: center;
+        }
+        #header{
+            font-family: 'Oleo Script Swash Caps', cursive;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            padding: 1rem 0;
+            background-color: lightblue;
+            clip-path: polygon(0 0, 100% 0%, 100% 76%, 0 100%);
+            text-align: center;
+        }
+        #container{
+            width: 80%;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
 </style>
 </head>
-<body style="width: 80%; margin: 5rem auto;">
-    <h1>Solidabiksen koodihaaste</h1>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>    
-            <label>Matka
-                <input type="number" id="matka"> Km
-            </label>
-        </div>
-        <div>  
-            <label>Nopeus 1
-                <input type="text" id="nopeus1"> Km/h
-            </label>
-        </div>
-        <div>  
-            <label>Nopeus 2
-                <input type="text" id="nopeus2"> Km/h
-            </label>
-        </div>
-    </div>
-    <div>
-        <h2>Matka-aika</h2>
-        <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div class="infobox"><span id="aika1" style="font-weight: bold;"></span></div>
-            <div class="infobox"><span id="aika2" style="font-weight: bold;"></span></div>
-            <div class="infobox"><span id="infoAika" style="font-weight: bold;"></span><br><br></div>
-        </div>
-    </div>
-    <div>
-        <h2>Polttoaineen kulutus</h2>
-        <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div class="infobox">
-                Auto A - 3L/100km<br><br>
-                <span id="kulutusA1"></span><br><br>
-                <span id="kulutusA2"></span><br><br>
-                <span id="infoAk" style="font-weight: bold;"></span>
+<body style="margin: 0">
+    <div id="header"><h1>Solidabiksen koodihaaste</h1></div>
+    <div id="container">
+        <div style="display: grid; grid-template-columns: auto auto auto; text-align: center; font-size: 1.8rem;">
+            <div class="typebox">    
+                <label>Matka
+                    <input type="number" id="matka"> Km
+                </label>
             </div>
-            <div class="infobox">
-                Auto B - 3.5L/100km <br><br>
-                <span id="kulutusB1"></span><br><br>
-                <span id="kulutusB2"></span><br><br>
-                <span id="infoBk" style="font-weight: bold;"></span>
+            <div class="typebox">    
+                <label>Nopeus 1
+                    <input type="number" id="nopeus1"> Km/h
+                </label>
             </div>
-            <div class="infobox">
-                Auto C - 4L/100km <br><br>
-                <span id="kulutusC1"></span><br><br>
-                <span id="kulutusC2"></span><br><br>
-                <span id="infoCk" style="font-weight: bold;"></span>
+            <div class="typebox">    
+                <label>Nopeus 2
+                    <input type="number" id="nopeus2"> Km/h
+                </label>
+            </div>
+        </div>
+        <div>
+            <h2>Matka-aika</h2>
+            <div style="display: grid; grid-template-columns: auto auto auto; column-gap: 1rem;">
+                <div class="infobox">Nopeudella 1 <br><span id="aika1" style="font-weight: bold;"></span></div>
+                <div class="infobox"><span id="infoAika" style="font-weight: bold;"></span><br><br></div>
+                <div class="infobox">Nopeudella 2<br><br> <span id="aika2" style="font-weight: bold;"></span></div>
+            </div>
+        </div>
+        <div>
+            <h2>Polttoaineen kulutus</h2>
+            <div style="display: grid; grid-template-columns: auto auto auto; column-gap: 1rem;">
+                <div class="infobox">
+                    Auto A - 3L/100km<br><br>
+                    <span id="kulutusA1"></span><br><br>
+                    <span id="kulutusA2"></span><br><br>
+                    <span id="infoAk" style="font-weight: bold;"></span>
+                </div>
+                <div class="infobox">
+                    Auto B - 3.5L/100km <br><br>
+                    <span id="kulutusB1"></span><br><br>
+                    <span id="kulutusB2"></span><br><br>
+                    <span id="infoBk" style="font-weight: bold;"></span>
+                </div>
+                <div class="infobox">
+                    Auto C - 4L/100km <br><br>
+                    <span id="kulutusC1"></span><br><br>
+                    <span id="kulutusC2"></span><br><br>
+                    <span id="infoCk" style="font-weight: bold;"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -90,7 +126,6 @@ https://urrio.fi
             nopeus1 = Number(nopeus1);
             let nopeus2 = $("#nopeus2").val();
             nopeus2 = Number(nopeus2);
-            // TODO nopeus ei päivitä yli matkan pituuden?
 
             // calculate elapsed time
             matka_aika1 = matka / nopeus1;
@@ -101,40 +136,28 @@ https://urrio.fi
             let yksiMin = ajat1[1];
             let kaksiH = ajat2[0];
             let kaksiMin = ajat2[1];
-            yksiMin = yksiMin.toFixed(0);
-            kaksiMin = kaksiMin.toFixed(0);
+            yksiMin = Number(yksiMin.toFixed(0));
+            kaksiMin = Number(kaksiMin.toFixed(0));
 
             // display time 
-            //if(Number(ajat1[0])){ $("#aika1").html(nopeus1 + "km/h " + ajat1[0] + "h " + ajat1[1] + "min");}
-            //if(Number(ajat2[0])){ $("#aika2").html(nopeus2 + "km/h " + ajat2[0] + "h " + ajat2[1] + "min");}
-            $("#aika1").html(nopeus1 + "km/h " + yksiH + "h " + yksiMin + "min");
-            $("#aika2").html(nopeus2 + "km/h " + kaksiH + "h " + kaksiMin + "min");
+            if(Number(nopeus1)){ $("#aika1").text(nopeus1 + "km/h " + yksiH + "h " + yksiMin + "min");}
+            else if(nopeus2 == 0){ $("#aika2").text(nopeus2 + "km/h pysyt paikallasi");}
+            if(Number(nopeus2)){ $("#aika2").text(nopeus2 + "km/h " + kaksiH + "h " + kaksiMin + "min");}
+            else if(nopeus2 == 0){ $("#aika2").text(nopeus2 + "km/h pysyt paikallasi");}
 
-           
-                /* Mahdolliset tapaukset = 
-                1. aika     2. aika     odote       ratkaisu
-                1h 10min  > 1h 5min     5min        normaali 
-                1h 10min  < 1h 15min    5min        normaali 
-                0h 10min  <  1h 20min   1h 10min    normaali
-                0h 10min  <  1h 5min    55min       siirrä 1h minuutteihin  tapaus Ah < BH && Amin > Bmin && 
-                
-                
-                Ei näytä silti oikein aikoja TODO KOSKA LAUSEET FAILAA
-                */
             if(yksiH < kaksiH && yksiMin > kaksiMin){
                 difmin = 60 - yksiMin + kaksiMin;
-                difh = kaksiH - 1;
+                difh = kaksiH - yksiH - 1;
             }
             else if(yksiH > kaksiH && yksiMin < kaksiMin){
                 difmin = 60 - yksiMin + kaksiMin;
-                difh = yksiH - 1;
+                difh = yksiH - kaksiH - 1;
             }
             else{
                 difh = yksiH - kaksiH;
                 difmin = yksiMin - kaksiMin;
 
             }
-            
             difh = Math.abs(difh);
             difmin = Math.abs(difmin);
             if(Number(difmin)){ $("#infoAika").html("Matka nopeutui " + difh +  " h " + difmin + " minuuttia");}
