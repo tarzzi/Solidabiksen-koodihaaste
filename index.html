@@ -15,6 +15,8 @@ https://urrio.fi
 
 <html lang="fi">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoilumittari</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Open+Sans&display=swap"
@@ -51,7 +53,7 @@ https://urrio.fi
           id="time"
         >
           <div class="infobox">
-            <h3 class="blue-bg">Nopeudella <span id="speed1"></span></h3>
+            <h3>Nopeudella <span id="speed1"></span></h3>
             <span class="infotext" id="aika1" style="font-weight: bold"></span>
           </div>
           <div class="infobox">
@@ -77,29 +79,28 @@ https://urrio.fi
         <div class="info-grid hidden" id="fuel">
           <div class="infobox">
             <h3>Auto A - 3L/100km</h3>
-            <div style="display: grid; grid-template-rows: auto auto">
-              <span class="infotext typebox-sm" id="kulutusA1"></span>
-              <span class="infotext typebox-sm" id="kulutusA2"></span>
+            <div class="fuelgrid">
+                <span class="infotext typebox-sm" id="kulutusA1"></span>
+                <span class="infotext typebox-sm" id="kulutusA2"></span>            
+                <span class="infotext" id="infoAk" style="font-weight: bold"></span>
+            </div> 
             </div>
-            <span class="infotext" id="infoAk" style="font-weight: bold"></span>
-          </div>
           <div class="infobox">
             <h3>Auto B - 3.5L/100km</h3>
-            <span class="infotext" id="kulutusB1"></span><br /><br />
-            <span
-              class="infotext"
-              id="kulutusB2"
-              style="font-weight: bold"
-            ></span
-            ><br /><br />
+            <div class="fuelgrid">
+            <span class="infotext typebox-sm" id="kulutusB1"></span>
+            <span class="infotext typebox-sm" id="kulutusB2"></span>
             <span class="infotext" id="infoBk" style="font-weight: bold"></span>
           </div>
+        </div>
           <div class="infobox">
             <h3>Auto C - 4L/100km</h3>
-            <span class="infotext" id="kulutusC1"></span><br /><br />
-            <span class="infotext" id="kulutusC2"></span><br /><br />
+            <div class="fuelgrid">
+            <span class="infotext typebox-sm" id="kulutusC1"></span>
+            <span class="infotext typebox-sm" id="kulutusC2"></span>
             <span class="infotext" id="infoCk" style="font-weight: bold"></span>
           </div>
+        </div>
         </div>
       </div>
     </div>

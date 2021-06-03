@@ -99,6 +99,7 @@ body {
     text-align: center;
     font-size: 1.6rem;
   }
+  
   .typebox {
     background-color: rgb(0, 99, 166);
     color: white;
@@ -130,12 +131,24 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     column-gap: 1rem;
+    justify-items: center;
+  }
+  @media only screen and (max-width: 1100px) {
+    .info-grid {
+        display: grid;
+        grid-template-columns: auto;
+      }
   }
   .infobox {
     border: outset;
     padding: 2rem;
     text-align: center;
     width: 80%;
+  }
+  .fuelgrid{
+    display: grid; 
+    grid-template-rows: auto auto auto;
+    margin-bottom: 2em;
   }
   .infotext {
     font-size: 1.5em;
