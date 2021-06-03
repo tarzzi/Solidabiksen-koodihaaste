@@ -66,6 +66,11 @@ https://urrio.fi
             margin: 0 auto;
             padding: 2rem 0;
         }
+        #footer{            
+            background: rgb(255,255,255);
+            background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,99,166,0.87718837535014) 57%, rgba(0,99,166,1) 97%, rgba(0,99,166,1) 100%);       
+            height: 10vh;
+        }
         .blue-bg{            
             background-color: rgb(0,99,166);
             color: white;
@@ -101,6 +106,7 @@ https://urrio.fi
             border: outset;
             padding: 2rem;
             text-align: center;
+            width: 80%;
         }
         .hidden{
             display: none;
@@ -129,8 +135,8 @@ https://urrio.fi
         </div>
         <div>
             <h2>Matka-aika</h2>
-            <div class="info-grid hidden" id="time">
-                <div class="infobox"><h3 class="blue-bg">Nopeudella 1<span id="aika1" style="font-weight: bold;"></span></h3></div>
+            <div class="info-grid hidden animate__animated animate__fadeIn" id="time">
+                <div class="infobox"><h3 class="blue-bg">Nopeudella 1 <span id="aika1" style="font-weight: bold;"></span></h3></div>
                 <div class="infobox">
                     <h3>Aikaero</h3>
                     <span id="infoAika" style="font-weight: bold;"></span>
@@ -167,18 +173,19 @@ https://urrio.fi
             </div>
         </div>
     </div>
+    <div id="footer" style="text-align: center;">Made by Tarmo</div>
     <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-        $("input").on("keyup change",(function () {
-            //animations
-            if($("#time").hasClass("hidden") ){
-                $("#time").removeClass("hidden"); 
-                $("#fuel").removeClass("hidden");}
-            $(".fade-in").addClass("animate__animated, animate__fadeIn");
-            //calculations
-            Laske();
-        }));
+            $("input").on("keyup change",(function () {
+                //animations
+                if($("#time").hasClass("hidden") ){
+                    $("#time").removeClass("hidden"); 
+                    $("#fuel").removeClass("hidden");}
+                $(".fade-in").addClass("animate__animated, animate__fadeIn");
+                //calculations
+                Laske();
+            }));
 
         function Laske(){
             // init values
