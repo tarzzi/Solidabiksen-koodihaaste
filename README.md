@@ -9,10 +9,11 @@ Yksinkertaisen monimutkainen hienosäätöä vaativa ja parannusehdotuksia löyt
   
 tldr; Tulipahan tehtyä projektin puutteessa ja omaksi iloksi  
   
-Html & Css  
-Javascript  
-JQuery  
-[Animate.css](https://animate.style/)  
+### Käytetyt tekniikat:  
+- HTML & CSS  
+- Javascript  
+- JQuery  
+- [Animate.css](https://animate.style/)  
   
 Ratkaisu osoitteesta [urrio.cloud](https://urrio.cloud/koodihaaste)
 
