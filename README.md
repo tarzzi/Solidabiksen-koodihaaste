@@ -5,7 +5,7 @@ Sovelluksen tulee pystyä suorittamaan vertailu matka-ajan ja polttoaineen kulut
 [Ohjeistus](https://koodihaaste.solidabis.com/#/)
 
 # Toteutus
-Yksinkertaisen monimutkainen hienosäätöä vaativa ja parannusehdotuksia löytyvä toteutus, mutta ajanpuutteen vuoksi tälläisenaan toteutettu perusratkaisu hifistelyelementeillä tuotettu autoilulaskuri.  
+Yksinkertaisen monimutkainen hienosäätöä vaativa ja parannusehdotuksia löytyvä toteutus, mutta ajanpuutteen vuoksi tälläisenaan toteutettu perusratkaisu hifistelyelementeillä tuotettu autoilulaskuri. Parannusehdotuksia löytyy ja varmasti bugiton ei ole, mutta omaan silmään visuaaliset tarpeet tyydyttävä yksinkertainen lopputulos. Lisättynä jarrutusmatkan laskurilla nopeuserojen ja bensankulutuksen vertailun lisäksi.    
   
 tldr; Tulipahan tehtyä projektin puutteessa ja omaksi iloksi  
   
