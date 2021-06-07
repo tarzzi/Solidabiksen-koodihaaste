@@ -76,7 +76,7 @@ $(document).ready(function () {
   
       //display consumption
       if (Number(kulutusA[0])) {
-        $("#kulutusA1").html(nopeus1 + "km/h " + kulutusA[0] + "L/100km");
+        $("#kulutusA1").html(nopeus1 + "km/h <br>" + kulutusA[0] + "L/100km");
       }
       if (Number(kulutusA[0])) {
         $("#kulutusA2").html(nopeus2 + "km/h <br>" + kulutusA[1] + "L/100km");

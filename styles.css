@@ -99,6 +99,12 @@ body {
     text-align: center;
     font-size: 1.6rem;
   }
+  @media only screen and (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: auto;
+        row-gap: 1rem;
+      }
+  }
   
   .typebox {
     background-color: rgb(0, 99, 166);
@@ -137,6 +143,7 @@ body {
     .info-grid {
         display: grid;
         grid-template-columns: auto;
+        row-gap: 1rem;
       }
   }
   .infobox {
@@ -149,6 +156,14 @@ body {
     display: grid; 
     grid-template-rows: auto auto auto;
     margin-bottom: 2em;
+    row-gap: 1rem;
+  }
+  
+  @media only screen and (max-width: 1100px) {
+    .fuelgrid {
+        display: grid;
+        grid-template-columns: auto;
+      }
   }
   .infotext {
     font-size: 1.5em;
