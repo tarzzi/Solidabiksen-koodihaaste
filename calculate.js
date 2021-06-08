@@ -98,15 +98,22 @@ $(document).ready(function () {
       let litraeroA = Kulutusero(kulutusA[0], kulutusA[1], matka);
       let litraeroB = Kulutusero(kulutusB[0], kulutusB[1], matka);
       let litraeroC = Kulutusero(kulutusC[0], kulutusC[1], matka);
-  
-      if (Number(litraeroA)) {
-        $("#infoAk").html("Polttoainetta kului " + litraeroA + " litraa enemmän");
+      
+      
+      let text1 = "Polttoainetta kului ";
+      let text2 = " litraa enemmän";
+      let text3 = "Ei kulutuseroa";
+      if(nopeus1 == nopeus2){
+        $("#infoAk").html(text3);
+        $("#infoBk").html(text3);
+        $("#infoCk").html(text3);
       }
-      if (Number(litraeroB)) {
-        $("#infoBk").html("Polttoainetta kului " + litraeroB + " litraa enemmän");
-      }
-      if (Number(litraeroC)) {
-        $("#infoCk").html("Polttoainetta kului " + litraeroC + " litraa enemmän");
+      else{
+        if (Number(litraeroA)) {
+          $("#infoAk").html(text1 + litraeroA + text2);
+          $("#infoBk").html(text1 + litraeroB + text2);
+          $("#infoCk").html(text1 + litraeroC + text2);
+        }
       }
   
       /*
@@ -121,6 +128,9 @@ $(document).ready(function () {
       jarrutusero = jarrutusero.toFixed(0);
       if (Number(jarrutusero)) {
         $("#infoJarru").text(jarrutusero + " metriä");
+      }
+      if(nopeus1 == nopeus2){
+        $("#infoJarru").text("0 metriä");
       }
     }
   
